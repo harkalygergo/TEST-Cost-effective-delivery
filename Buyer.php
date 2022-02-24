@@ -6,10 +6,6 @@ class Buyer
 	private float $latitude;
 	private float $longitude;
 
-	public function __construct()
-	{
-	}
-
 	public function getId(): int
 	{
 		return $this->id;

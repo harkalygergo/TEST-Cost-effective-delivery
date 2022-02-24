@@ -4,7 +4,11 @@ Task is the last section.
 
 ## Usage
 
-Edit or just run `test.php`.
+For demo version just edit and run `test.php`.
+
+For live version call function with `new App($buyer, $warehouses);` command.
+
+---
 
 ## Task
 

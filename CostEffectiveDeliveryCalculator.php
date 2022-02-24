@@ -22,11 +22,11 @@ class CostEffectiveDeliveryCalculator
 		/* @var Warehouse $warehouse */
 		foreach($this->warehouses as $warehouse)
 		{
-			$distance = $this->getDistanceBeetweenPoints(
+			$distance = $this->getDistanceBetweenPoints(
 				$this->buyer->getPosition(),
 				[$warehouse->getLatitude(), $warehouse->getLongitude()]
 			);
-			if(is_null($minimumDistance) || $distance<$minimumDistance)
+			if(is_null($minimumDistance) || is_null($closestWarehouse) || $distance<$minimumDistance)
 			{
 				$minimumDistance = $distance;
 				$closestWarehouse = $warehouse;
@@ -51,14 +51,9 @@ class CostEffectiveDeliveryCalculator
 		return $this->warehouses;
 	}
 
-
-
-
-
-
 	// function based on: https://www.geodatasource.com/developers/php
 	// other solution could be: $distance = sqrt(pow($lat1-$lat2, 2) + pow($long1-$long2, 2));
-	private function getDistanceBeetweenPoints($point1=[], $point2=[], $unit="K")
+	private function getDistanceBetweenPoints($point1=[], $point2=[], $unit="kilometer")
 	{
 		if(!empty($point1) && !empty($point2))
 		{
@@ -77,26 +72,24 @@ class CostEffectiveDeliveryCalculator
 				$dist = acos($dist);
 				$dist = rad2deg($dist);
 				$miles = $dist * 60 * 1.1515;
-				$unit = strtoupper($unit);
-				if ($unit==="K")
+				switch($unit)
 				{
-					return ($miles * 1.609344);
-				}
-				elseif($unit==="N")
-				{
-					return ($miles * 0.8684);
-				}
-				else
-				{
-					return $miles;
+					case 'kilometer':
+					{
+						return ($miles * 1.609344);
+					}
+					case 'mile':
+					{
+						return $miles;
+					}
+					case 'nautical':
+					{
+						return ($miles * 0.8684);
+					}
 				}
 			}
 		}
-		else
-		{
-			return null;
-		}
+
+		return 0;
 	}
-
-
 }
