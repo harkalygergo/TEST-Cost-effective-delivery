@@ -1,5 +1,11 @@
 # TEST: Cost effective delivery
 
+Task is the last section.
+
+## Usage
+
+Edit or just run `test.php`.
+
 ## Task
 
 Dóri would like to order 10 "Bride Squad" T-shirts for her girlfriend's upcoming bachelorette party.

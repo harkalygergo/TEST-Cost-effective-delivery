@@ -4,35 +4,15 @@ class CostEffectiveDeliveryCalculator
 {
 	private Helper $helper;
 	private Buyer $buyer;
+	private array $warehouses;
 	private int $radius = 100;
 	private int $warehouseCount = 3;
-	private array $warehouses = [];
 
-	public function __construct()
+	public function __construct(Buyer $buyer, array $warehouses)
 	{
+		$this->buyer = $buyer;
+		$this->warehouses = $warehouses;
 		$this->helper = new Helper($this->radius);
-		$this->buyer = new Buyer();
-		$test = true;
-
-		if($test)
-		{
-			$budapest = array(47.49801, 19.03991);
-			$monor = array(47.35133, 19.44733);
-			$szolnok = array(47.18333, 20.2);
-			$miskolc = array(48.1, 20.78333);
-			$szeged = array(46.253, 20.14824);
-			$varosok = [$szolnok, $miskolc, $szeged];
-			$this->buyer->setLatitude($budapest['0']);
-			$this->buyer->setLongitude($budapest['1']);
-			for ($i=0; $i<$this->warehouseCount; $i++)
-			{
-				$warehouse = new Warehouse();
-				$warehouse->setId($i);
-				$warehouse->setLatitude($varosok[$i]['0']);
-				$warehouse->setLongitude($varosok[$i]['1']);
-				$this->warehouses[] = $warehouse;
-			}
-		}
 	}
 
 	public function getClosestWarehouse()
@@ -54,11 +34,6 @@ class CostEffectiveDeliveryCalculator
 		}
 
 		return $closestWarehouse;
-	}
-
-	public function getBuyerPosition()
-	{
-		return $this->helper->generateLatitudeAndLongitude();
 	}
 
 	public function getWarehouses()
