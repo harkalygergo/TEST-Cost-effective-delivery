@@ -39,4 +39,9 @@ class Buyer
 	{
 		$this->longitude = $longitude;
 	}
+
+	public function getPosition()
+	{
+		return [$this->getLatitude(), $this->getLongitude()];
+	}
 }

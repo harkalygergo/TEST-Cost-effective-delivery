@@ -10,7 +10,7 @@ tshirts.tld has 3 warehouses, and each warehouse has it’s own T-Shirt stock an
 
 Goal:
 
-Finding the most cost effective transport route by the combination of the warehouses for  qberon-tshirts.hu.
+Finding the most cost effective transport route by the combination of the warehouses for tshirts.hu.
 
 Rule:
 
