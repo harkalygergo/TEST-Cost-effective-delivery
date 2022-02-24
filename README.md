@@ -4,7 +4,7 @@ Task is the last section.
 
 ## Usage
 
-For demo version just edit and run `test.php`.
+For demo version just edit and run `test.php`. Output is a `Warehouse` object, which is closest to buyer.
 
 For live version call function with `new App($buyer, $warehouses);` command.
 
@@ -16,11 +16,11 @@ Dóri would like to order 10 "Bride Squad" T-shirts for her girlfriend's upcomin
 
 She decided to send her order via the tshirts.tld website and entered a coordinate as the delivery address. 
 
-tshirts.tld has 3 warehouses, and each warehouse has it’s own T-Shirt stock and unique coordinate.
+tshirts.tld has 3 warehouses, and each warehouse has it's own T-Shirt stock and unique coordinate.
 
 Goal:
 
-Finding the most cost effective transport route by the combination of the warehouses for tshirts.hu.
+Finding the most cost effective transport route by the combination of the warehouses for tshirts.tld.
 
 Rule:
 
