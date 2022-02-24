@@ -1,4 +1,4 @@
-# TEST PROJECT: Cost effective delivery
+# TEST: Cost effective delivery
 
 ## Task
 

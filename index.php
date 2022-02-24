@@ -9,10 +9,10 @@ class App
 	public function __construct()
 	{
 		try {
-			new CostEffectiveDeliveryCalculator();
+			print_r( (new CostEffectiveDeliveryCalculator())->getClosestWarehouse() );
 		} catch (Exception $e) {
 			echo $e->getMessage(), "\n";
 		}
 	}
 }
-new App();
+(new App());
