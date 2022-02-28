@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Helper
 {
 	private int $radius;

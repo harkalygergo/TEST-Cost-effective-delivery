@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class Warehouse
 {
 	private string $id;
@@ -7,17 +9,11 @@ class Warehouse
 	private ?float $longitude = null;
 	private ?int $itemStock = null;
 
-	/**
-	 * @return string
-	 */
 	public function getId(): string
 	{
 		return $this->id;
 	}
 
-	/**
-	 * @param string $id
-	 */
 	public function setId(string $id): void
 	{
 		$this->id = $id;

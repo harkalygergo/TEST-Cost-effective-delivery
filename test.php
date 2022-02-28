@@ -1,8 +1,12 @@
 <?php
 
-spl_autoload_register(function ($class_name) {
-	include 'app/'.$class_name . '.php';
-});
+use App\App;
+use App\Buyer;
+use App\Helper;
+use App\Order;
+use App\Warehouse;
+
+require 'vendor/autoload.php';
 
 class Test
 {

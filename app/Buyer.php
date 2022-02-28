@@ -1,42 +1,44 @@
 <?php
 
+namespace App;
+
 class Buyer
 {
-	private int $id;
-	private float $latitude;
-	private float $longitude;
+	private ?int $id = null;
+	private ?float $latitude = null;
+	private ?float $longitude = null;
 
-	public function getId(): int
+	public function getId(): ?int
 	{
 		return $this->id;
 	}
 
-	public function setId(int $id): void
+	public function setId(?int $id): void
 	{
 		$this->id = $id;
 	}
 
-	public function getLatitude(): float
+	public function getLatitude(): ?float
 	{
 		return $this->latitude;
 	}
 
-	public function setLatitude(float $latitude): void
+	public function setLatitude(?float $latitude): void
 	{
 		$this->latitude = $latitude;
 	}
 
-	public function getLongitude(): float
+	public function getLongitude(): ?float
 	{
 		return $this->longitude;
 	}
 
-	public function setLongitude(float $longitude): void
+	public function setLongitude(?float $longitude): void
 	{
 		$this->longitude = $longitude;
 	}
 
-	public function getPosition()
+	public function getPosition(): array
 	{
 		return [$this->getLatitude(), $this->getLongitude()];
 	}

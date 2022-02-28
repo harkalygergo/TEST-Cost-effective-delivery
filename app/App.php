@@ -1,5 +1,9 @@
 <?php
 
+namespace App;
+
+use Exception;
+
 class App
 {
 	public function __construct(Buyer $buyer, Order $order, array $warehouses)

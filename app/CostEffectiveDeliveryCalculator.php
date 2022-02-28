@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 class CostEffectiveDeliveryCalculator
 {
 	private Buyer $buyer;
