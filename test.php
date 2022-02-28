@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function ($class_name) {
-	include $class_name . '.php';
+	include 'app/'.$class_name . '.php';
 });
 
 $budapest = array(47.49801, 19.03991);
@@ -21,8 +21,13 @@ for ($i=0; $i<count($cities); $i++)
 	$warehouses[] = $warehouse;
 }
 
+$order = new Order();
+$order->setItemCount(5);
+
 $buyer = new Buyer();
 $buyer->setLatitude($budapest['0']);
 $buyer->setLongitude($budapest['1']);
 
-new App($buyer, $warehouses);
+new App($buyer, $order, $warehouses);
+
+print_r($order);

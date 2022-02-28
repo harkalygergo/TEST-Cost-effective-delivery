@@ -4,13 +4,15 @@ class CostEffectiveDeliveryCalculator
 {
 	private Helper $helper;
 	private Buyer $buyer;
+	private Order $order;
 	private array $warehouses;
 	private int $radius = 100;
 	private int $warehouseCount = 3;
 
-	public function __construct(Buyer $buyer, array $warehouses)
+	public function __construct(Buyer $buyer, Order $order, array $warehouses)
 	{
 		$this->buyer = $buyer;
+		$this->order = $order;
 		$this->warehouses = $warehouses;
 		$this->helper = new Helper($this->radius);
 	}
@@ -32,6 +34,10 @@ class CostEffectiveDeliveryCalculator
 				$closestWarehouse = $warehouse;
 			}
 		}
+
+		$this->order->setTransportDistance($minimumDistance);
+		$this->order->setShippingPrice($minimumDistance*100);
+		$this->order->setClosestWarehouse($closestWarehouse);
 
 		return $closestWarehouse;
 	}
