@@ -31,26 +31,27 @@ class Test
 		{
 			$cities = $this->helper->getRandomPoints($this->warehouseCount);
 			$randomPoint = $this->helper->getRandomPoints(1);
-			$buyer->setLatitude($randomPoint['0']['0']);
-			$buyer->setLongitude($randomPoint['0']['1']);
+			$buyer->setLatitude($randomPoint['0']['1']);
+			$buyer->setLongitude($randomPoint['0']['2']);
 		}
 		else
 		{
 			$budapest = array(47.49801, 19.03991);
-			$monor = array(47.35133, 19.44733);
-			$szolnok = array(47.18333, 20.2);
-			$miskolc = array(48.1, 20.78333);
-			$szeged = array(46.253, 20.14824);
-			$cities = [$szolnok, $miskolc, $szeged];
+			$cities = [
+				//array('Monor', 47.35133, 19.44733),
+				array('Szolnok', 47.18333, 20.2),
+				array('Miskolc', 48.1, 20.78333),
+				array('Szeged', 46.253, 20.14824),
+			];
 			$buyer->setLatitude($budapest['0']);
 			$buyer->setLongitude($budapest['1']);
 		}
 		for ($i=0; $i<count($cities); $i++)
 		{
 			$warehouse = new Warehouse();
-			$warehouse->setId($i);
-			$warehouse->setLatitude($cities[$i]['0']);
-			$warehouse->setLongitude($cities[$i]['1']);
+			$warehouse->setId($cities[$i]['0']);
+			$warehouse->setLatitude($cities[$i]['1']);
+			$warehouse->setLongitude($cities[$i]['2']);
 			$warehouse->setItemStock(rand(0, $order->getItemCount()));
 			$warehouses[] = $warehouse;
 		}

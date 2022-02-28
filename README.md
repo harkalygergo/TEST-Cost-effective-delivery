@@ -4,7 +4,7 @@ Task is the last section.
 
 ## Usage
 
-For demo version just edit and run `test.php`. Output is a `Warehouse` object, which is closest to buyer.
+For demo version just edit and run `test.php`. Output is a `Warehouse` object, which is closest to buyer. Current version Buyer's city is Budapest and there are some Hungarian cities defined, but you can set `$randomPoints` to `true` in Test class, so it would generate random coordinates and names for them.
 
 For live version call function with `new App($buyer, $order, $warehouses);` command.
 

@@ -2,17 +2,23 @@
 
 class Warehouse
 {
-	private int $id;
+	private string $id;
 	private ?float $latitude = null;
 	private ?float $longitude = null;
 	private ?int $itemStock = null;
 
-	public function getId(): int
+	/**
+	 * @return string
+	 */
+	public function getId(): string
 	{
 		return $this->id;
 	}
 
-	public function setId(int $id): void
+	/**
+	 * @param string $id
+	 */
+	public function setId(string $id): void
 	{
 		$this->id = $id;
 	}

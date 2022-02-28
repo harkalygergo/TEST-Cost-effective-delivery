@@ -13,7 +13,18 @@ class CostEffectiveDeliveryCalculator
 		$this->warehouses = $warehouses;
 	}
 
-	public function getClosestWarehouse()
+	public function  getClosestWarehouseAndShippingPrice()
+	{
+		$closestWarehouse = $this->getClosestWarehouse();
+		if($closestWarehouse->getItemStock()<$this->order->getItemCount())
+		{
+			return 'kevesebb van készleten';
+		}
+
+		return $closestWarehouse;
+	}
+
+	private function getClosestWarehouse()
 	{
 		$minimumDistance = null;
 		$closestWarehouse = null;

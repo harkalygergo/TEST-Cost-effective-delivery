@@ -6,7 +6,7 @@ class App
 	{
 		try {
 			$costEffectiveDeliveryCalculator = new CostEffectiveDeliveryCalculator($buyer, $order, $warehouses);
-			$costEffectiveDeliveryCalculator->getClosestWarehouse();
+			print_r($costEffectiveDeliveryCalculator->getClosestWarehouseAndShippingPrice());
 		} catch (Exception $e) {
 			echo $e->getMessage(), "\n";
 		}

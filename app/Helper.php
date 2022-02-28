@@ -14,6 +14,7 @@ class Helper
 		$angle = deg2rad(mt_rand(0, 359));
 		$pointRadius = mt_rand(0, $this->radius);
 		$point = array(
+			hash('adler32', rand(0, 100)),
 			sin($angle) * $pointRadius,
 			cos($angle) * $pointRadius
 		);
@@ -24,7 +25,7 @@ class Helper
 	public function getRandomPoints(int $count=0)
 	{
 		$points = [];
-		for ($i=0; $i<$count; $i++)
+		for($i=0; $i<$count; $i++)
 		{
 			$points[] = $this->generateLatitudeAndLongitude();
 		}
