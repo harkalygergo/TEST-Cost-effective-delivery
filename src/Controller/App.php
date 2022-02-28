@@ -1,8 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Controller;
 
 use Exception;
+use App\Model\Buyer;
+use App\Model\Order;
 
 class App
 {

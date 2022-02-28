@@ -1,12 +1,12 @@
 <?php
 
-use App\App;
-use App\Buyer;
+use App\Controller\App;
 use App\Helper;
-use App\Order;
-use App\Warehouse;
+use App\Model\Buyer;
+use App\Model\Order;
+use App\Model\Warehouse;
 
-require 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 class Test
 {
@@ -31,15 +31,12 @@ class Test
 
 		// warehouses
 		$warehouses = [];
-		if($this->randomPoints)
-		{
+		if ($this->randomPoints) {
 			$cities = $this->helper->getRandomPoints($this->warehouseCount);
 			$randomPoint = $this->helper->getRandomPoints(1);
 			$buyer->setLatitude($randomPoint['0']['1']);
 			$buyer->setLongitude($randomPoint['0']['2']);
-		}
-		else
-		{
+		} else {
 			$budapest = array(47.49801, 19.03991);
 			$cities = [
 				//array('Monor', 47.35133, 19.44733),
@@ -50,8 +47,7 @@ class Test
 			$buyer->setLatitude($budapest['0']);
 			$buyer->setLongitude($budapest['1']);
 		}
-		for ($i=0; $i<count($cities); $i++)
-		{
+		for ($i = 0; $i < count($cities); $i++) {
 			$warehouse = new Warehouse();
 			$warehouse->setId($cities[$i]['0']);
 			$warehouse->setLatitude($cities[$i]['1']);
@@ -65,4 +61,5 @@ class Test
 		print_r($order);
 	}
 }
+
 (new Test)->test();

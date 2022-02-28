@@ -1,6 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Controller;
+
+use App\Model\Buyer;
+use App\Model\Order;
+use App\Model\Warehouse;
 
 class CostEffectiveDeliveryCalculator
 {
