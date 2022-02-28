@@ -6,7 +6,7 @@ Task is the last section.
 
 For demo version just edit and run `test.php`. Output is a `Warehouse` object, which is closest to buyer.
 
-For live version call function with `new App($buyer, $warehouses);` command.
+For live version call function with `new App($buyer, $order, $warehouses);` command.
 
 ---
 

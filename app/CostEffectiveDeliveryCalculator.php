@@ -42,6 +42,22 @@ class CostEffectiveDeliveryCalculator
 		return $closestWarehouse;
 	}
 
+	public function getDistancesBetweenWarehouses()
+	{
+		foreach($this->warehouses as $warehouse)
+		{
+			$distance = $this->getDistanceBetweenPoints(
+				$this->buyer->getPosition(),
+				[$warehouse->getLatitude(), $warehouse->getLongitude()]
+			);
+			if(is_null($minimumDistance) || is_null($closestWarehouse) || $distance<$minimumDistance)
+			{
+				$minimumDistance = $distance;
+				$closestWarehouse = $warehouse;
+			}
+		}
+	}
+
 	public function getWarehouses()
 	{
 		for ($i=0; $i<$this->warehouseCount; $i++)
@@ -51,6 +67,7 @@ class CostEffectiveDeliveryCalculator
 			$warehouse->setId($i);
 			$warehouse->setLatitude($points['0']);
 			$warehouse->setLongitude($points['1']);
+			$warehouse->setItemStock(rand(0, $this->order->getItemCount()));
 			$this->warehouses[] = $warehouse;
 		}
 

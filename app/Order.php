@@ -2,10 +2,28 @@
 
 class Order
 {
+	private int $id;
 	private int $itemCount = 0;
 	private float $transportDistance = 0;
 	private float $shippingPrice = 0;
-	private ?Warehouse $closestWarehouse = null;
+	private Warehouse $closestWarehouse;
+	private Buyer $buyer;
+
+	/**
+	 * @return int
+	 */
+	public function getId(): int
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void
+	{
+		$this->id = $id;
+	}
 
 	/**
 	 * @return int
@@ -56,18 +74,34 @@ class Order
 	}
 
 	/**
-	 * @return Warehouse|null
+	 * @return Warehouse
 	 */
-	public function getClosestWarehouse(): ?Warehouse
+	public function getClosestWarehouse(): Warehouse
 	{
 		return $this->closestWarehouse;
 	}
 
 	/**
-	 * @param Warehouse|null $closestWarehouse
+	 * @param Warehouse $closestWarehouse
 	 */
-	public function setClosestWarehouse(?Warehouse $closestWarehouse): void
+	public function setClosestWarehouse(Warehouse $closestWarehouse): void
 	{
 		$this->closestWarehouse = $closestWarehouse;
+	}
+
+	/**
+	 * @return Buyer
+	 */
+	public function getBuyer(): Buyer
+	{
+		return $this->buyer;
+	}
+
+	/**
+	 * @param Buyer $buyer
+	 */
+	public function setBuyer(Buyer $buyer): void
+	{
+		$this->buyer = $buyer;
 	}
 }

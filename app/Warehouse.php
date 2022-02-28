@@ -5,6 +5,7 @@ class Warehouse
 	private int $id;
 	private ?float $latitude = null;
 	private ?float $longitude = null;
+	private ?int $itemStock = null;
 
 	public function getId(): int
 	{
@@ -34,5 +35,15 @@ class Warehouse
 	public function setLongitude(?float $longitude): void
 	{
 		$this->longitude = $longitude;
+	}
+
+	public function getItemStock(): ?int
+	{
+		return $this->itemStock;
+	}
+
+	public function setItemStock(?int $itemStock): void
+	{
+		$this->itemStock = $itemStock;
 	}
 }
