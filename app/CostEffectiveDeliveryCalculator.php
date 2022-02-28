@@ -2,19 +2,15 @@
 
 class CostEffectiveDeliveryCalculator
 {
-	private Helper $helper;
 	private Buyer $buyer;
 	private Order $order;
 	private array $warehouses;
-	private int $radius = 100;
-	private int $warehouseCount = 3;
 
 	public function __construct(Buyer $buyer, Order $order, array $warehouses)
 	{
 		$this->buyer = $buyer;
 		$this->order = $order;
 		$this->warehouses = $warehouses;
-		$this->helper = new Helper($this->radius);
 	}
 
 	public function getClosestWarehouse()
@@ -56,22 +52,6 @@ class CostEffectiveDeliveryCalculator
 				$closestWarehouse = $warehouse;
 			}
 		}
-	}
-
-	public function getWarehouses()
-	{
-		for ($i=0; $i<$this->warehouseCount; $i++)
-		{
-			$points = $this->helper->generateLatitudeAndLongitude();
-			$warehouse = new Warehouse();
-			$warehouse->setId($i);
-			$warehouse->setLatitude($points['0']);
-			$warehouse->setLongitude($points['1']);
-			$warehouse->setItemStock(rand(0, $this->order->getItemCount()));
-			$this->warehouses[] = $warehouse;
-		}
-
-		return $this->warehouses;
 	}
 
 	// function based on: https://www.geodatasource.com/developers/php

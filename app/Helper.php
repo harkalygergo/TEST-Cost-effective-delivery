@@ -20,4 +20,15 @@ class Helper
 
 		return $point;
 	}
+
+	public function getRandomPoints(int $count=0)
+	{
+		$points = [];
+		for ($i=0; $i<$count; $i++)
+		{
+			$points[] = $this->generateLatitudeAndLongitude();
+		}
+
+		return $points;
+	}
 }
