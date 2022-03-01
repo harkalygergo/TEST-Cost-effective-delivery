@@ -15,14 +15,13 @@ class CostEffectiveDeliveryCalculator
         private ?Warehouse $closestWarehouse = null
     ) {}
 
-    public function getClosestWarehouseAndShippingPrice()
+    public function getClosestWarehouseWithShippingPrice()
     {
         $this->closestWarehouse = $this->getClosestWarehouse();
         if($this->closestWarehouse->getItemStock()<$this->order->getItemCount())
         {
             $missingItems = $this->order->getItemCount() - $this->closestWarehouse->getItemStock();
             $this->findOptimalRoute($missingItems);
-            return 'kevesebb van készleten';
         }
 
         return $this->closestWarehouse;
@@ -30,6 +29,7 @@ class CostEffectiveDeliveryCalculator
     
     public function findOptimalRoute($missingItems)
     {
+        $warehouseHasMissingItem = null;
         foreach($this->warehouses as $warehouse)
         {
             if($this->closestWarehouse!==$warehouse)
@@ -37,16 +37,44 @@ class CostEffectiveDeliveryCalculator
                 /* @var Warehouse $warehouse */
                 if($warehouse->getItemStock()===$missingItems)
                 {
-                    $extraShippingFeeDistance = $this->getDistanceBetweenPoints(
-                        $this->closestWarehouse->getPosition(),
-                        $warehouse->getPosition()
-                    );
-                    $this->order->setShippingPrice( $this->order->getShippingPrice() + $extraShippingFeeDistance*0.15 );
+                    $warehouseHasMissingItem = $warehouse;
                 }
             }
         }
+        if(!is_null($warehouseHasMissingItem))
+        {
+            $this->increaseShippingPriceWithOneWarehouse($warehouseHasMissingItem);
+        }
+        else
+        {
+            $this->increaseShippingPriceWithMultipleWarehouses();
+        }
     }
-    
+
+    private function increaseShippingPriceWithOneWarehouse($warehouse)
+    {
+        $extraShippingFeeDistance = $this->getDistanceBetweenPoints(
+            $this->closestWarehouse->getPosition(),
+            $warehouse->getPosition()
+        );
+        $this->order->setShippingPrice( $this->order->getShippingPrice() + $extraShippingFeeDistance*0.15 );
+    }
+
+    private function increaseShippingPriceWithMultipleWarehouses()
+    {
+        $extraShippingFeeDistance = 0;
+        foreach($this->warehouses as $warehouse)
+        {
+            if($this->closestWarehouse!==$warehouse)
+            {
+                $extraShippingFeeDistance += $this->getDistanceBetweenPoints(
+                    $this->closestWarehouse->getPosition(),
+                    $warehouse->getPosition()
+                );
+            }
+        }
+        $this->order->setShippingPrice( $this->order->getShippingPrice() + $extraShippingFeeDistance*0.15 );
+    }
 
     private function getClosestWarehouse()
     {
@@ -73,32 +101,16 @@ class CostEffectiveDeliveryCalculator
         return $closestWarehouse;
     }
 
-    public function getDistancesBetweenWarehouses()
-    {
-        foreach($this->warehouses as $warehouse)
-        {
-            $distance = $this->getDistanceBetweenPoints(
-                $this->buyer->getPosition(),
-                [$warehouse->getLatitude(), $warehouse->getLongitude()]
-            );
-            if(is_null($minimumDistance) || is_null($closestWarehouse) || $distance<$minimumDistance)
-            {
-                $minimumDistance = $distance;
-                $closestWarehouse = $warehouse;
-            }
-        }
-    }
-
     // function based on: https://www.geodatasource.com/developers/php
     // other solution could be: $distance = sqrt(pow($lat1-$lat2, 2) + pow($long1-$long2, 2));
-    private function getDistanceBetweenPoints($point1=[], $point2=[], $unit="kilometer")
+    private function getDistanceBetweenPoints($coordinates1=[], $coordinates2=[], $unit="kilometer")
     {
-        if(!empty($point1) && !empty($point2))
+        if(!empty($coordinates1) && !empty($coordinates2))
         {
-            $lat1 = $point1['0'];
-            $lon1 = $point1['1'];
-            $lat2 = $point2['0'];
-            $lon2 = $point2['1'];
+            $lat1 = $coordinates1['0'];
+            $lon1 = $coordinates1['1'];
+            $lat2 = $coordinates2['0'];
+            $lon2 = $coordinates2['1'];
             if (($lat1 == $lat2) && ($lon1 == $lon2))
             {
                 return 0;

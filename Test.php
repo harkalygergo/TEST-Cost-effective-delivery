@@ -41,9 +41,10 @@ class Test
             $budapest = array(47.49801, 19.03991);
             $cities = [
                 array('Monor', 47.35133, 19.44733),
-                array('Szolnok', 47.18333, 20.2),
+                //array('Szolnok', 47.18333, 20.2),
                 array('Miskolc', 48.1, 20.78333),
-                array('Szeged', 46.253, 20.14824),
+                //array('Szeged', 46.253, 20.14824),
+                array('Pécs', 46.08333, 18.23333),
             ];
             $buyer->setLatitude($budapest['0']);
             $buyer->setLongitude($budapest['1']);
@@ -59,7 +60,8 @@ class Test
 
         // run
         new App($buyer, $order, $warehouses);
-        print_r($order);
+        print_r($order->getClosestWarehouse());
+        print_r($order->getShippingPrice());
     }
 }
 

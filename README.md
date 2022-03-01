@@ -10,9 +10,23 @@ For live version call function with `new App($buyer, $order, $warehouses);` comm
 
 ---
 
-## Task
+## Example output
 
-**Screenshots and SQL database under `ticket` directory.**
+Closest Warehouse and calculated shipping price.
+
+```php
+App\Model\Warehouse Object
+(
+    [latitude:App\Model\AbstractPosition:private] => 47.35133
+    [longitude:App\Model\AbstractPosition:private] => 19.44733
+    [id:App\Model\Warehouse:private] => Monor
+    [itemStock:App\Model\Warehouse:private] => 4
+)
+
+3516.5926421627
+```
+
+## Task
 
 Dóri would like to order 10 "Bride Squad" T-shirts for her girlfriend's upcoming bachelorette party.
 
