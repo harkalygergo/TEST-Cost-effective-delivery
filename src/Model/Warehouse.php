@@ -2,19 +2,19 @@
 
 namespace App\Model;
 
-class Warehouse
+class Warehouse implements PositionInterface
 {
-	private string $id;
+	private ?string $id = null;
 	private ?float $latitude = null;
 	private ?float $longitude = null;
 	private ?int $itemStock = null;
 
-	public function getId(): string
+	public function getId(): ?string
 	{
 		return $this->id;
 	}
 
-	public function setId(string $id): void
+	public function setId(?string $id): void
 	{
 		$this->id = $id;
 	}
@@ -33,6 +33,7 @@ class Warehouse
 	{
 		return $this->longitude;
 	}
+
 
 	public function setLongitude(?float $longitude): void
 	{

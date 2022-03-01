@@ -10,12 +10,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 class Test
 {
-	private int $warehouseCount = 3;
-	private int $radius = 100;
-	private bool $randomPoints = false;
 	private Helper $helper;
 
-	public function __construct()
+	public function __construct(
+		private int $warehouseCount = 3,
+		private int $radius = 100,
+		private bool $randomPoints = false,
+	)
 	{
 		$this->helper = new Helper($this->radius);
 	}
@@ -62,4 +63,4 @@ class Test
 	}
 }
 
-(new Test)->test();
+(new Test())->test();

@@ -8,16 +8,11 @@ use App\Model\Warehouse;
 
 class CostEffectiveDeliveryCalculator
 {
-	private Buyer $buyer;
-	private Order $order;
-	private array $warehouses;
-
-	public function __construct(Buyer $buyer, Order $order, array $warehouses)
-	{
-		$this->buyer = $buyer;
-		$this->order = $order;
-		$this->warehouses = $warehouses;
-	}
+	public function __construct(
+		private Buyer $buyer,
+		private Order $order,
+		private array $warehouses
+	) {}
 
 	public function  getClosestWarehouseAndShippingPrice()
 	{

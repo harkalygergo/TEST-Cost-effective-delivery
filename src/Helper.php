@@ -4,12 +4,9 @@ namespace App;
 
 class Helper
 {
-	private int $radius;
-
-	public function __construct(int $radius)
-	{
-		$this->radius = $radius;
-	}
+	public function __construct(
+		private int $radius
+	) {}
 
 	public function generateLatitudeAndLongitude(): array
 	{

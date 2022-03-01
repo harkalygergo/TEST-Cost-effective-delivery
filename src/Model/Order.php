@@ -4,19 +4,19 @@ namespace App\Model;
 
 class Order
 {
-	private int $id;
+	private ?int $id = null;
 	private int $itemCount = 0;
 	private float $transportDistance = 0;
 	private float $shippingPrice = 0;
-	private Warehouse $closestWarehouse;
-	private Buyer $buyer;
+	private ?Warehouse $closestWarehouse = null;
+	private ?Buyer $buyer = null;
 
-	public function getId(): int
+	public function getId(): ?int
 	{
 		return $this->id;
 	}
 
-	public function setId(int $id): void
+	public function setId(?int $id): void
 	{
 		$this->id = $id;
 	}
@@ -51,22 +51,22 @@ class Order
 		$this->shippingPrice = $shippingPrice;
 	}
 
-	public function getClosestWarehouse(): Warehouse
+	public function getClosestWarehouse(): ?Warehouse
 	{
 		return $this->closestWarehouse;
 	}
 
-	public function setClosestWarehouse(Warehouse $closestWarehouse): void
+	public function setClosestWarehouse(?Warehouse $closestWarehouse): void
 	{
 		$this->closestWarehouse = $closestWarehouse;
 	}
 
-	public function getBuyer(): Buyer
+	public function getBuyer(): ?Buyer
 	{
 		return $this->buyer;
 	}
 
-	public function setBuyer(Buyer $buyer): void
+	public function setBuyer(?Buyer $buyer): void
 	{
 		$this->buyer = $buyer;
 	}

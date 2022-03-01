@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class Buyer
+class Buyer implements PositionInterface
 {
 	private ?int $id = null;
 	private ?float $latitude = null;
