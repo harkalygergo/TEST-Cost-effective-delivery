@@ -11,21 +11,41 @@ class CostEffectiveDeliveryCalculator
     public function __construct(
         private Buyer $buyer,
         private Order $order,
-        private array $warehouses
+        private array $warehouses,
+        private ?Warehouse $closestWarehouse = null
     ) {}
 
-    public function  getClosestWarehouseAndShippingPrice()
+    public function getClosestWarehouseAndShippingPrice()
     {
-        $closestWarehouse = $this->getClosestWarehouse();
-        if($closestWarehouse->getItemStock()<$this->order->getItemCount())
+        $this->closestWarehouse = $this->getClosestWarehouse();
+        if($this->closestWarehouse->getItemStock()<$this->order->getItemCount())
         {
+            $missingItems = $this->order->getItemCount() - $this->closestWarehouse->getItemStock();
+            $this->findOptimalRoute($missingItems);
             return 'kevesebb van készleten';
         }
 
-        return $closestWarehouse;
+        return $this->closestWarehouse;
     }
     
-    
+    public function findOptimalRoute($missingItems)
+    {
+        foreach($this->warehouses as $warehouse)
+        {
+            if($this->closestWarehouse!==$warehouse)
+            {
+                /* @var Warehouse $warehouse */
+                if($warehouse->getItemStock()===$missingItems)
+                {
+                    $extraShippingFeeDistance = $this->getDistanceBetweenPoints(
+                        $this->closestWarehouse->getPosition(),
+                        $warehouse->getPosition()
+                    );
+                    $this->order->setShippingPrice( $this->order->getShippingPrice() + $extraShippingFeeDistance*0.15 );
+                }
+            }
+        }
+    }
     
 
     private function getClosestWarehouse()

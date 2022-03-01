@@ -11,4 +11,6 @@ interface PositionInterface
     public function getLongitude(): ?float;
 
     public function setLongitude(?float $longitude): void;
+
+    public function getPosition(): array;
 }

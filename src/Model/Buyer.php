@@ -2,11 +2,9 @@
 
 namespace App\Model;
 
-class Buyer implements PositionInterface
+class Buyer extends AbstractPosition implements PositionInterface
 {
     private ?int $id = null;
-    private ?float $latitude = null;
-    private ?float $longitude = null;
 
     public function getId(): ?int
     {
@@ -16,30 +14,5 @@ class Buyer implements PositionInterface
     public function setId(?int $id): void
     {
         $this->id = $id;
-    }
-
-    public function getLatitude(): ?float
-    {
-        return $this->latitude;
-    }
-
-    public function setLatitude(?float $latitude): void
-    {
-        $this->latitude = $latitude;
-    }
-
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(?float $longitude): void
-    {
-        $this->longitude = $longitude;
-    }
-
-    public function getPosition(): array
-    {
-        return [$this->getLatitude(), $this->getLongitude()];
     }
 }

@@ -40,7 +40,7 @@ class Test
         } else {
             $budapest = array(47.49801, 19.03991);
             $cities = [
-                //array('Monor', 47.35133, 19.44733),
+                array('Monor', 47.35133, 19.44733),
                 array('Szolnok', 47.18333, 20.2),
                 array('Miskolc', 48.1, 20.78333),
                 array('Szeged', 46.253, 20.14824),
