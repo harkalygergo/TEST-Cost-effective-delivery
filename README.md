@@ -12,6 +12,8 @@ For live version call function with `new App($buyer, $order, $warehouses);` comm
 
 ## Task
 
+**Screenshots and SQL database under `ticket` directory.**
+
 Dóri would like to order 10 "Bride Squad" T-shirts for her girlfriend's upcoming bachelorette party.
 
 She decided to send her order via the tshirts.tld website and entered a coordinate as the delivery address. 
