@@ -13,7 +13,7 @@ class Helper
 		$angle = deg2rad(mt_rand(0, 359));
 		$pointRadius = mt_rand(0, $this->radius);
 		$point = array(
-			hash('adler32', rand(0, 100)),
+			hash('adler32', random_int(0, 100)),
 			sin($angle) * $pointRadius,
 			cos($angle) * $pointRadius
 		);
